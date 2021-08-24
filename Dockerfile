@@ -1,8 +1,11 @@
-FROM node:alpine AS my-app-build
+FROM node:alpine AS build-step
+RUN mkdir -p /app
 WORKDIR /app
-COPY . .
-RUN npm ci && npm run build
+COPY package.json /app
+RUN npm install
+COPY . /app
+RUN npm run build
 
 FROM nginx:alpine
-COPY --from=my-app-build /app/dist/financial-dashboard-web /usr/share/nginx/html
+COPY --from=build-step /app/docs /usr/share/nginx/html
 EXPOSE 80
