@@ -4,7 +4,7 @@ WORKDIR /app
 COPY package.json /app
 RUN npm install
 COPY . /app
-RUN npm run build
+RUN npm ci && npm run build
 
 FROM nginx:alpine
 COPY --from=build-step /dist/financial-web-app /usr/share/nginx/html
