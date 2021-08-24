@@ -1,4 +1,4 @@
-FROM node:alpine AS my-app-build
+FROM node:alpine AS build-step
 WORKDIR /app
 COPY . .
 RUN npm ci && npm run build
