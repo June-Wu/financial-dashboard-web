@@ -1,9 +1,6 @@
-FROM node:alpine AS build-step
-RUN mkdir -p /app
+FROM node:alpine AS my-app-build
 WORKDIR /app
-COPY package.json /app
-RUN npm install
-COPY . /app
+COPY . .
 RUN npm ci && npm run build
 
 FROM nginx:alpine
