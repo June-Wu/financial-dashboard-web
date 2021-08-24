@@ -7,5 +7,5 @@ COPY . /app
 RUN npm run build
 
 FROM nginx:alpine
-COPY --from=build-step /app/docs /usr/share/nginx/html
+COPY --from=build-step /dist/financial-web-app /usr/share/nginx/html
 EXPOSE 80
