@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FinancialService } from 'src/services/financial.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
-  constructor() { }
+  paramObj = {category:'movies'}
+  reportData = { id: 0, title: 'no-name', director: 'anon' }
+  
+  constructor(private financialService: FinancialService) { }
 
   ngOnInit(): void {
+  }
+
+  makeServiceCall(){
+    this.financialService.getApiData(this.paramObj)
+      .subscribe( (data:any)=>{
+        this.reportData = data
+      } )
   }
 
 }
