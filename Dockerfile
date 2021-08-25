@@ -1,8 +1,10 @@
-FROM node:alpine AS build-step
+FROM node:alpine as buildstep
 WORKDIR /app
 COPY . .
 RUN npm ci && npm run build
 
 FROM nginx:alpine
-COPY --from=build-step /app/dist/financial-dashboard-web /usr/share/nginx/html
-EXPOSE 80
+RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
+USER <user>[:<group>]
+COPY --from=buildstep /app/dist/MyApp /usr/share/nginx/html
+EXPOSE 8081
