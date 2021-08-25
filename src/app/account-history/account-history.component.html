@@ -1,8 +1,9 @@
 <div class="card">
     <div class="card-body">
         <a href="#" class="btn btn-primary" (click)='getAccountHistoryById()' >Account History</a>
-        <ul>
-            <li *ngFor="let ac of reportAccountHistoryList">{{ac.date}}</li>
+        <ul *ngFor="let ac of reportAccountHistoryList">
+            <li >{{ac.date}}</li>
+            <li >{{ac.value}}</li>
         </ul>
     </div>
 </div>
