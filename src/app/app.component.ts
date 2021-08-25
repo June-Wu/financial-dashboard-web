@@ -78,11 +78,11 @@ export class AppComponent {
     } else if (arg.item.text == "Banking") {
       this._router.navigate(['/banking']);
     } else if (arg.item.text == "Investment") {
-      this._router.navigate(['/investments']);
+      this._router.navigate(['/investment']);
     } else if (arg.item.text == "History") {
       this._router.navigate(['/account-history']);
     } else if (arg.item.text == "Markets") {
-      this._router.navigate(['/market']);
+      this._router.navigate(['/markets']);
     }
   }
 

@@ -21,7 +21,7 @@ const routes: Routes = [
     path: 'accounts',
     component: AccountsComponent
   }, {
-    path: 'market',
+    path: 'markets',
     component: MarketComponent
   }, {
     path: 'user-profile',
@@ -30,7 +30,7 @@ const routes: Routes = [
     path: 'banking',
     component: BankingComponent
   }, {
-    path: 'investments',
+    path: 'investment',
     component: InvestmentsComponent
   }, {
     path: 'account-history',
