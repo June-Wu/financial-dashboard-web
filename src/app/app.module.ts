@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuAllModule, SidebarModule, TreeViewAllModule } from '@syncfusion/ej2-angular-navigations';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MarketComponent } from './market/market.component';
@@ -12,8 +17,6 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
-import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,12 +31,17 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     InvestmentsComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     SidebarModule,
+    RadioButtonModule,
+    MenuAllModule,
+    DropDownListModule,
     ButtonModule,
-    BrowserAnimationsModule
+    TreeViewAllModule,
+    ListViewAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
