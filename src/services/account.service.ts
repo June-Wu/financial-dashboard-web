@@ -11,11 +11,19 @@ import { ACCOUNTS } from 'src/app/mock-accounts';
 export class AccountService {
 
   constructor(private http:HttpClient) { }
+
+  getByUser(params: any): Observable<Account[]>{ 
+    //return this.http.get(`localhost:8080/accounts/${params.accountId}`)
+    const accounts = of(ACCOUNTS.filter(a => {
+      return a.userId === Number(params.userId)
+    }));
+    return accounts;
+  }
   
-  getApiData(params: any): Observable<Account | undefined>{ 
+  getById(params: any): Observable<Account | undefined>{ 
     //return this.http.get(`localhost:8080/accounts/${params.accountId}`)
     const account = of(ACCOUNTS.find(a => {
-      return a.accountId === params.accountId
+      return a.accountId === Number(params.accountId)
     }));
     return account;
   }
