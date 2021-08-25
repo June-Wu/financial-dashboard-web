@@ -1,9 +1,15 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MenuAllModule, SidebarModule, TreeViewAllModule } from '@syncfusion/ej2-angular-navigations';
+import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
+import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
+
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MarketComponent } from './market/market.component';
@@ -25,9 +31,17 @@ import { InvestmentsComponent } from './investments/investments.component';
     InvestmentsComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    FormsModule
+    BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    SidebarModule,
+    RadioButtonModule,
+    MenuAllModule,
+    DropDownListModule,
+    ButtonModule,
+    TreeViewAllModule,
+    ListViewAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
