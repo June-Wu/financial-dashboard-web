@@ -1,1 +1,9 @@
-<p>accounts works!</p>
+<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <input type='text' [(ngModel)]='paramObj.accountId' name='id' /> {{paramObj.accountId}}
+    <p class="card-text">Quick sample text to create the card title and make up the body of the card's content.</p>
+    <a href="#" class="btn btn-primary" (click)='makeServiceCall()'>Account</a>
+  </div>
+</div>
+<p>{{reportData.accountId ? reportData.accountId : "nothing"}}</p>

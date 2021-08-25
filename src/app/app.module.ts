@@ -11,7 +11,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,8 @@ import { InvestmentsComponent } from './investments/investments.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
