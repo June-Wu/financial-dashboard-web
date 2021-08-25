@@ -1,9 +1,34 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { SidebarComponent } from './sidebar/sidebar.component';
+
 
 const routes: Routes = [
-  {path:'sidebar', component:SidebarComponent},
+  {
+    path: '',
+    redirectTo: 'overview',
+    pathMatch: 'full'
+  }, {
+    path: 'overview',
+    redirectTo: 'overview'
+  }, {
+    path: 'accounts',
+    redirectTo: 'accounts'
+  }, {
+    path: 'market',
+    redirectTo: 'market'
+  }, {
+    path: 'user-profile',
+    redirectTo: 'user-profile'
+  }, {
+    path: 'banking',
+    redirectTo: 'banking'
+  }, {
+    path: 'investments',
+    redirectTo: 'investments'
+  }, {
+    path: 'account-history',
+    redirectTo: 'account-history'
+  }, 
 ];
 
 @NgModule({
