@@ -30,6 +30,6 @@
     "strictInputAccessModifiers": true,
     "strictTemplates": true,
     "strictPropertyInitialization": false,
-    "strictnullchecks": false
+    "strictNullChecks": false,
   }
 }

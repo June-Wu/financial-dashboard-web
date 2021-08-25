@@ -1,6 +1,7 @@
 import { Component, Inject, ViewChild } from '@angular/core';
 import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
 import { MenuItemModel } from '@syncfusion/ej2-navigations';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -11,13 +12,13 @@ export class AppComponent {
   title = 'financial-dashboard-web';
 
   @ViewChild('sidebarMenuInstance')
-  public sidebarMenuInstance: SidebarComponent;
+  public sidebarMenuInstance!: SidebarComponent;
   public width: string = '220px';
   public mediaQuery: string = ('(min-width: 600px)');
   public target: string = '.main-content';
   public dockSize: string = '50px';
    public enableDock: boolean = true;
-  constructor() {
+  constructor(private _router: Router) {
   }
   public menuItems: MenuItemModel[] = [
       {
@@ -68,9 +69,26 @@ export class AppComponent {
       }
   ];
 
-  menuItemClick(item: any) {
-    console.log("Here");
-    console.log(item);
+  menuItemClick(arg: any) {
+    console.log(arg.item);
+    if (arg.item.text == "Overview") {
+      this._router.navigate(['/overview']);
+    } else if (arg.item.text == "Banking") {
+      
+    } else if (arg.item.text == "Investment") {
+      
+    } else if (arg.item.text == "History") {
+      
+    } else if (arg.item.text == "Explore") {
+      
+    }
+  }
+
+  accountItemClick(arg: any) {
+    console.log(arg.item);
+    if (arg.item.text == "Profile") {
+      
+    }
   }
 
   // // open new tab

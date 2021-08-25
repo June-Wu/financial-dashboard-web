@@ -13,7 +13,7 @@
                         <li class="right-header list">
                             <div class="horizontal-menu">
                                 <!-- Menu element declaration -->
-                                <ejs-menu [items]='AccountMenuItem' cssClass='dock-menu'></ejs-menu>
+                                <ejs-menu [items]='AccountMenuItem' cssClass='dock-menu' (select)='accountItemClick($event)'></ejs-menu>
                             </div>
                         </li>
                         <li class="right-header list support">Support</li>
@@ -24,9 +24,9 @@
                 <ejs-sidebar id="sidebar-menu" class="dock-menu" #sidebarMenuInstance [enableDock]='enableDock' [width]='width'
                     [dockSize]='dockSize' [mediaQuery]='mediaQuery' [target]='target'>
                     <div class="main-menu">
-                        <p class="main-menu-header">MAIN</p>
+                        <p class="main-menu-header">MENU</p>
                         <!-- Menu element declaration -->
-                        <ejs-menu [items]='menuItems' orientation='Vertical' cssClass='dock-menu' (click)='menuItemClick($event)'></ejs-menu>
+                        <ejs-menu [items]='menuItems' orientation='Vertical' cssClass='dock-menu' (select)='menuItemClick($event)'></ejs-menu>
                     </div>
                     <!-- <div class="action">
                         <p class="main-menu-header">ACTION</p>
@@ -38,8 +38,7 @@
                 <!-- main-content declaration -->
                 <div class="main-content" id="maintext">
                     <div class="sidebar-menu-content">
-                        <div> Responsive Sidebar with Menu</div>
-                        <h1 style="display:none"> Responsive Sidebar with Menu</h1>
+                        <router-outlet></router-outlet>
                     </div>
                 </div>
                 <!-- end of main-content -->
