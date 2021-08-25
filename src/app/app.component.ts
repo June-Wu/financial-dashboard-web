@@ -22,73 +22,38 @@ export class AppComponent {
   public menuItems: MenuItemModel[] = [
       {
           text: 'Overview',
-          iconCss: 'icon-globe icon',
-          items: [
-              { text: 'All Data' },
-              { text: 'Category2' },
-              { text: 'Category3' }
-          ]
-      },
-      {
-          text: 'Notification',
-          iconCss: 'icon-bell-alt icon',
-          items: [
-              { text: 'Message' },
-              { text: 'Facebook' },
-              { text: 'Twitter' }
-          ]
-      },
-      {
-          text: 'Comments',
-          iconCss: 'icon-comment-inv-alt2 icon',
-          items: [
-              { text: 'Category1' },
-              { text: 'Category2' },
-              { text: 'Category3' }
-          ]
-      },
-      {
-          text: 'Bookmarks',
-          iconCss: 'icon-bookmark icon',
-          items: [
-              { text: 'All Comments' },
-              { text: 'Add Comments' },
-              { text: 'Delete Comments' }
-          ]
-      },
-      {
-          text: 'Images',
-          iconCss: 'icon-picture icon',
-          items: [
-              { text: 'Add Name' },
-              { text: 'Add Mobile Number' },
-              { text: 'Add Imaage' },
-          ]
-      },
-      {
-          text: 'Users ',
+          iconCss: 'icon-eye icon',
+      },{
+          text: 'Accounts ',
           iconCss: 'icon-user icon',
           items: [
-              { text: 'Mobile1' },
-              { text: 'Mobile2' },
-              { text: 'Telephone' }
+              { text: 'Banking' },
+              { text: 'Investment' },
+              { text: 'History' }
           ]
-      },
-      {
+    },{
+      text: 'Markets ',
+      iconCss: 'icon-globe icon',
+      items: [
+          { text: 'Explore' },
+          { text: 'Watchlists' },
+          { text: 'Crypto' },
+          { text: 'News' }
+      ]
+    },{
+      text: 'Notifications',
+      iconCss: 'icon-bell-alt icon',
+      items: [
+          { text: 'Inbox' },
+          { text: 'Alerts' },
+      ]
+  },{
           text: 'Settings',
-          iconCss: 'icon-eye icon',
+          iconCss: 'icon-bookmark icon',
           items: [
-              { text: 'Change Profile' },
-              { text: 'Add Name' },
-              { text: 'Add Details' }
-          ]
-      },
-      {
-          text: 'Info',
-          iconCss: 'icon-tag icon',
-          items: [
-              { text: 'Facebook' },
-              { text: 'Mobile' },
+              { text: 'Privacy' },
+              { text: 'Permissions' },
+              { text: 'Configuration' }
           ]
       }
   ];
@@ -96,18 +61,26 @@ export class AppComponent {
       {
           text: 'Account',
           items: [
-              { text: 'Profile' },
-              { text: 'Sign out' },
+            { text: 'Profile' },
+            { text: 'Manage' },
+            { text: 'Sign out' },
           ]
       }
   ];
+
+  menuItemClick(item: any) {
+    console.log("Here");
+    console.log(item);
+  }
+
   // // open new tab
   // newTabClick(): void {
   //     let URL = location.href.replace(location.search,'');
   //     document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-menu');
   // }
 
-  openClick() {
+  openSidebarClick() {
+    console.log("Here1");
       this.sidebarMenuInstance.toggle();
   }
 }

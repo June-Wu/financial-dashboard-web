@@ -8,7 +8,7 @@
                 <!--header-section  declaration -->
                 <div class="header-section dock-menu" id="header">
                     <ul class="header-list">
-                        <li id="hamburger" class="icon-menu icon list" (click)="openClick()"></li>
+                        <li id="hamburger" class="icon-menu icon list" (click)="openSidebarClick()"></li>
                         <input type="text" placeholder="Search..." class="search-icon list">
                         <li class="right-header list">
                             <div class="horizontal-menu">
@@ -17,7 +17,6 @@
                             </div>
                         </li>
                         <li class="right-header list support">Support</li>
-                        <li class="right-header list tour">Tour</li>
                     </ul>
                 </div>
                 <!--end of header-section  declaration -->
@@ -27,12 +26,12 @@
                     <div class="main-menu">
                         <p class="main-menu-header">MAIN</p>
                         <!-- Menu element declaration -->
-                        <ejs-menu [items]='menuItems' orientation='Vertical' cssClass='dock-menu'></ejs-menu>
+                        <ejs-menu [items]='menuItems' orientation='Vertical' cssClass='dock-menu' (click)='menuItemClick($event)'></ejs-menu>
                     </div>
-                    <div class="action">
+                    <!-- <div class="action">
                         <p class="main-menu-header">ACTION</p>
                         <button class="e-btn action-btn" id="action-button">+ Button</button>
-                    </div>
+                    </div> -->
                 </ejs-sidebar>
                 <!-- end of sidebar element -->
 
