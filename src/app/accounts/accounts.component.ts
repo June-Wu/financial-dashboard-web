@@ -29,10 +29,8 @@ export class AccountsComponent implements OnInit {
   reportAccountList: Account[] = []
 
   getAccountsByUser(): void{
-    console.log(this.getAccountsByUserParams)
     this.accountService.getByUser(this.getAccountsByUserParams)
       .subscribe( (data: Account[])=>{
-        console.log(data)
         if (data.length !== 0) {
           this.reportAccountList = data;
         }
@@ -40,10 +38,8 @@ export class AccountsComponent implements OnInit {
   }
 
   getAccountById(): void{
-    console.log(this.getAccountByIdParams)
     this.accountService.getById(this.getAccountByIdParams)
       .subscribe( (data: Account | undefined)=>{
-        console.log(data)
         if (data !== undefined) {
           this.reportAccount = data;
         }
