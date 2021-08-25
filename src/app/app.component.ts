@@ -25,7 +25,7 @@ export class AppComponent {
           text: 'Overview',
           iconCss: 'icon-eye icon',
       },{
-          text: 'Accounts ',
+          text: 'Accounts',
           iconCss: 'icon-user icon',
           items: [
               { text: 'Banking' },
@@ -33,7 +33,7 @@ export class AppComponent {
               { text: 'History' }
           ]
     },{
-      text: 'Markets ',
+      text: 'Markets',
       iconCss: 'icon-globe icon',
       items: [
           { text: 'Explore' },
@@ -73,21 +73,23 @@ export class AppComponent {
     console.log(arg.item);
     if (arg.item.text == "Overview") {
       this._router.navigate(['/overview']);
+    } else if (arg.item.text == "Accounts") {
+      this._router.navigate(['/accounts']);
     } else if (arg.item.text == "Banking") {
-      
+      this._router.navigate(['/banking']);
     } else if (arg.item.text == "Investment") {
-      
+      this._router.navigate(['/investment']);
     } else if (arg.item.text == "History") {
-      
-    } else if (arg.item.text == "Explore") {
-      
+      this._router.navigate(['/history']);
+    } else if (arg.item.text == "Markets") {
+      this._router.navigate(['/market']);
     }
   }
 
   accountItemClick(arg: any) {
     console.log(arg.item);
     if (arg.item.text == "Profile") {
-      
+      this._router.navigate(['/user-profile']);
     }
   }
 
