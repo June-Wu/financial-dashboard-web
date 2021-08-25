@@ -1,1 +1,15 @@
-<router-outlet></router-outlet>
+
+<ejs-sidebar id="default-sidebar" #sidebar [type]='type' [enablePersistence]='enablePersistence' style="visibility: hidden" [target]='target'>
+    <div class="title"> Sidebar content</div>
+</ejs-sidebar>
+<div id="head">
+    <button ejs-button id="toggle" #togglebtn cssClass="e-flat" isToggle="true"
+        (click)="btnClick()">Menu</button>
+</div>
+<div id="maincontent" class="content">
+    <div>
+        <div class="title">Main content</div>
+    </div>
+</div>
+
+<!--end of main content declaration -->

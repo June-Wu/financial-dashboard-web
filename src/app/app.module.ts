@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { SidebarModule } from '@syncfusion/ej2-angular-navigations';
 
+import { AppUiModule } from './app-ui.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
@@ -11,6 +13,8 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
+import { ButtonModule } from '@syncfusion/ej2-angular-buttons';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -27,7 +31,11 @@ import { InvestmentsComponent } from './investments/investments.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    SidebarModule,
+    ButtonModule,
+    BrowserAnimationsModule,
+    AppUiModule
   ],
   providers: [],
   bootstrap: [AppComponent]
