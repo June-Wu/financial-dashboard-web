@@ -17,7 +17,7 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -41,7 +41,8 @@ import { InvestmentsComponent } from './investments/investments.component';
     DropDownListModule,
     ButtonModule,
     TreeViewAllModule,
-    ListViewAllModule
+    ListViewAllModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
