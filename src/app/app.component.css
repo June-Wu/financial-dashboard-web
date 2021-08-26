@@ -194,8 +194,9 @@ body {
 }
 
 #maintext .sidebar-menu-content {
-    margin-top: 3%;
-    width:fit-content;
+    margin-top: 2%;
+    padding-left: 2%;
+    width:85%;
     text-align: center;
     font-size: 32px;
     color: #1784c7;
