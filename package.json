@@ -29,6 +29,7 @@
     "@syncfusion/ej2-angular-navigations": "^19.2.56",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
+    "yahoo-finance": "^0.3.7",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
