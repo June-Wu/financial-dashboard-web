@@ -14,10 +14,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MarketComponent } from './market/market.component';
 import { AccountsComponent } from './accounts/accounts.component';
-import { AccountHistoryComponent } from './account-history/account-history.component';
+import { AccountHistoryGraphComponent } from './account-history-graph/account-history-graph.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
@@ -26,9 +27,9 @@ import { HttpClientModule } from '@angular/common/http';
     OverviewComponent,
     MarketComponent,
     AccountsComponent,
-    AccountHistoryComponent,
+    AccountHistoryGraphComponent,
     BankingComponent,
-    InvestmentsComponent
+    InvestmentsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -42,7 +43,8 @@ import { HttpClientModule } from '@angular/common/http';
     ButtonModule,
     TreeViewAllModule,
     ListViewAllModule,
-    HttpClientModule
+    HttpClientModule,
+    NgApexchartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

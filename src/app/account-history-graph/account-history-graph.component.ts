@@ -49,6 +49,7 @@ export class AccountHistoryGraphComponent implements OnInit, OnChanges {
       } )
   }
 
+  // just trying it out
   public series: ApexAxisChartSeries = [
     {
       name: "XYZ MOTORS",

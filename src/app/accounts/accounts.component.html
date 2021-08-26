@@ -1,5 +1,6 @@
-<div class="card" style="width: 18rem;">
+<!-- <div class="card" style="width: 18rem;">-->
 <!--temp, just for displaying that sevice works-->
+<!--
   <div class="card-body">
     <input type='text' [(ngModel)]='getAccountByIdParams.accountId' name='id' /> {{getAccountByIdParams.accountId}}
     <a href="#" class="btn btn-primary" (click)='getAccountById()'>Get By Account ID</a>
@@ -11,6 +12,6 @@
     <a href="#" class="btn btn-primary" (click)='getAccountsByUser()'>Get By User ID</a>
     <p>{{reportAccountList.length !== 0 ? reportAccountList : "Enter valid User ID"}}</p>
   </div>
-</div>
-
-<app-account-history [accountId]="reportAccount.accountId"></app-account-history>
+</div> -->
+<h1>Accounts</h1>
+<app-account-history-graph [accountId]="reportAccount.accountId"></app-account-history-graph>

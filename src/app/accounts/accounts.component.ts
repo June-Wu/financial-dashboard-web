@@ -15,8 +15,8 @@ export class AccountsComponent implements OnInit {
   }
 
   //Parameters
-  getAccountByIdParams = {accountId: null}
-  getAccountsByUserParams = {userId: null}
+  getAccountByIdParams = {accountId: 0}
+  getAccountsByUserParams = {userId: 0}
   
   //Reported from service
   reportAccount: Account = {
