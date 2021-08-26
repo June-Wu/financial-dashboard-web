@@ -1,1 +1,18 @@
-<p>market works!</p>
+<section>
+    <form>
+        <input placeholder='Stock Symbol' required [(ngModel)]='searchStockParamObj.symbol' name='symbol'>
+        <button (click)='searchStock()'>Search</button>
+    </form>
+    
+    <p style="color: red;">{{apiResponse}}</p>
+</section>
+<section>
+    <ejs-stockchart id='stockChartDefault' [chartArea]='chartArea' [primaryXAxis]='primaryXAxis' style="display:block;"
+    [primaryYAxis]='primaryYAxis' [title]='stockInfo.symbol' [crosshair]='crosshair'
+    (tooltipRender)='tooltipRender($event)' [tooltip]='tooltip' (load)='load($event)'>
+    <e-stockchart-series-collection>
+        <e-stockchart-series [dataSource]='dataSource' type='Candle' xName='x' yName='high' high='high' low='low'>
+        </e-stockchart-series>
+    </e-stockchart-series-collection>
+    </ejs-stockchart>
+</section>

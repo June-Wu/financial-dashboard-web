@@ -1,4 +1,4 @@
-import { Component, Inject, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
 import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
 import { MenuItemModel } from '@syncfusion/ej2-navigations';
 import { Router } from '@angular/router';
@@ -6,18 +6,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AppComponent {
   title = 'financial-dashboard-web';
 
-  @ViewChild('sidebarMenuInstance')
-  public sidebarMenuInstance!: SidebarComponent;
+  @ViewChild('sidebarInstance')
+  public sidebarInstance!: SidebarComponent;
   public width: string = '220px';
   public mediaQuery: string = ('(min-width: 600px)');
   public target: string = '.main-content';
   public dockSize: string = '50px';
-   public enableDock: boolean = true;
   constructor(private _router: Router) {
   }
   public menuItems: MenuItemModel[] = [
@@ -50,7 +50,7 @@ export class AppComponent {
       ]
   },{
           text: 'Settings',
-          iconCss: 'icon-bookmark icon',
+          iconCss: 'icon-cog icon',
           items: [
               { text: 'Privacy' },
               { text: 'Permissions' },
@@ -93,14 +93,8 @@ export class AppComponent {
     }
   }
 
-  // // open new tab
-  // newTabClick(): void {
-  //     let URL = location.href.replace(location.search,'');
-  //     document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-menu');
-  // }
-
   openSidebarClick() {
-    console.log("Here1");
-      this.sidebarMenuInstance.toggle();
+      this.sidebarInstance.toggle();
   }
+  
 }

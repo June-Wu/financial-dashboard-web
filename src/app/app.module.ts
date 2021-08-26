@@ -5,6 +5,7 @@ import { MenuAllModule, SidebarModule, TreeViewAllModule } from '@syncfusion/ej2
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
+import { ChartAllModule, RangeNavigatorAllModule, StockChartAllModule, ChartAnnotationService } from '@syncfusion/ej2-angular-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -43,7 +44,10 @@ import { InvestmentsComponent } from './investments/investments.component';
     DropDownListModule,
     ButtonModule,
     TreeViewAllModule,
-    ListViewAllModule
+    ListViewAllModule,
+    ChartAllModule,
+    RangeNavigatorAllModule,
+    StockChartAllModule
   ],
   providers: [],
   bootstrap: [AppComponent]
