@@ -50,7 +50,7 @@ export class AppComponent {
       ]
   },{
           text: 'Settings',
-          iconCss: 'icon-bookmark icon',
+          iconCss: 'icon-cog icon',
           items: [
               { text: 'Privacy' },
               { text: 'Permissions' },
