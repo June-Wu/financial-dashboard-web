@@ -56,7 +56,6 @@ export class MarketComponent implements OnInit {
 
     searchStock() {
         this.yfService.getStockChart(this.searchStockParamObj).subscribe((response: any) => {
-            
             if (response.chart.result == null) {
                 this.apiResponse = response.chart.error.description;
                 return;
@@ -64,8 +63,6 @@ export class MarketComponent implements OnInit {
             var result = response.chart.result[0];
             this.apiResponse = '';
             this.dataSource = [];
-            console.log(result.timestamp);
-            console.log(result.timestamp.length);
 
             for (var i = 0; i < result.timestamp.length; i++) {
                 var chartDataPoint = new ChartDataPoint;
@@ -84,8 +81,6 @@ export class MarketComponent implements OnInit {
             this.stockInfo.currency = result.meta.currency;
             this.stockInfo.currentPrice = result.meta.regularMarketPrice;
             this.stockInfo.previousClose = result.meta.chartPreviousClose;
-            console.log(this.dataSource);
-            console.log(this.stockInfo);
         })
     }
     ngOnInit(): void {
