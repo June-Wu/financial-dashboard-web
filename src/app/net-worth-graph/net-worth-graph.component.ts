@@ -13,6 +13,13 @@ export class NetWorthGraphComponent implements OnInit {
 
   @Input() userId = 1001;
 
+  public primaryXAxis: Object;
+  public chartData: Object[];
+  public primaryYAxis: Object;
+  public legendSettings: Object;
+  public tooltip: Object;
+  public marker: Object;
+
   //Parameters
   getNetWorthByUserParams = {userId: this.userId}
   
@@ -20,18 +27,30 @@ export class NetWorthGraphComponent implements OnInit {
   reportNetWorth: NetWorth[] = [];
 
   ngOnInit(): void {
-    console.log(this.getNetWorthByUserParams);
     this.getNetWorthById();
+    this.tooltip = {
+      enable: true
+    }
+    this.chartData = this.reportNetWorth;
+    this.primaryXAxis = {
+      valueType: 'DateTimeCategory',
+      labelFormat: 'yMd'
+    };
+    this.primaryYAxis = {
+        labelFormat: '${value}K'
+    };
+    this.legendSettings = {
+        visible: true
+    };
   }
 
   getNetWorthById(): void{
     this.accountHistoryService.getNetWorthByUserId(this.getNetWorthByUserParams)
       .subscribe( (data: NetWorth[])=>{
         if (data.length > 0) {
-          console.log(data);
           this.reportNetWorth = data;
         }
-      } )
+      } );
   }
 
 }

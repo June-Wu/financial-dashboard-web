@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import { DateTimeService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
 
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OverviewComponent } from './overview/overview.component';
@@ -50,7 +51,7 @@ import { NetWorthGraphComponent } from './net-worth-graph/net-worth-graph.compon
     HttpClientModule,
     ChartModule
   ],
-  providers: [],
+  providers: [DateTimeService, LineSeriesService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

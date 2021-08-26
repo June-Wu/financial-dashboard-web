@@ -1,1 +1,6 @@
-<ejs-chart id="chart-container"></ejs-chart>
+<ejs-chart id="chart-container" [primaryXAxis]='primaryXAxis' [primaryYAxis]='primaryYAxis'
+[legendSettings]='legendSettings' [tooltip]='tooltip'>
+    <e-series-collection>
+        <e-series [dataSource]='chartData' type='Line' xName='date' yName='netWorth' name='Net Worth' ></e-series>
+    </e-series-collection>
+</ejs-chart>
