@@ -1,3 +1,18 @@
+.btn {
+    margin-top: 30px;
+    width: max-content;
+    align-self: left;
+}
+
+.container {
+    background-color: #ededed;
+    max-width: 100%;
+    max-height: 100%;
+    margin-left: 0px;
+    margin-right: 0px;
+    padding: 20px;
+}
+
 #account-name {
     padding-top: 10px;
     font-size: medium;
@@ -23,7 +38,8 @@
 
 .page-title {
     font-size: xx-large;
-    margin: 20px;
+    margin-left: 2%;
+    margin-top: auto;
 }
 
 #account-history-graph {
@@ -32,18 +48,4 @@
 
 .card-title {
     font-size: large;
-}
-
-.btn {
-    margin-top: 30px;
-    width: max-content;
-    align-self: left;
-}
-
-.container {
-    background-color: #ededed;
-    max-width: 100%;
-    margin-left: 0px;
-    margin-right: 0px;
-    padding: 20px;
 }

@@ -14,7 +14,7 @@
   </div>
 </div> -->
 <div class="container">
-  <h1 class="page-title">Accounts</h1>
+  <h1 class="page-title">Accounts Overview</h1>
   <div class="row" id="accounts-overview">
     <div class="col-sm-9">
       <div class="card">
@@ -39,15 +39,17 @@
       <div *ngFor="let account of reportAccountList" class="col-sm"> 
         <div class="card text-white bg-info">
           <div class="card-body">
-            <div class="text-value" id="account-value">{{account.value}}</div>
+            <div class="text-value" id="account-value">{{account.value.toFixed(2)}}</div>
             <div id="account-name">{{account.name}}</div>
-            <button type="button" class="btn btn-block btn-outline-dark text-white" (click)='getAccountById(account.accountId)'>Show Details</button>
+            <button type="button" class="btn btn-block btn-outline-dark text-white" (click)='getAccountById(account.accountId)'>Go To Details</button>
           </div>
         </div>
       </div> 
     </div>
   </div>
-  
+  <div class="row">
+    <app-insights></app-insights>
+  </div>
   <div class="row" *ngIf="reportAccount.accountId">
       <div>
         {{reportAccount.accountId ? reportAccount.accountId : "nothing"}}
