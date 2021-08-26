@@ -7,8 +7,12 @@
     <p style="color: red;">{{apiResponse}}</p>
 </section>
 <section>
+    <section>
+        <h6>{{stockInfo.symbol}} - {{stockInfo.instrumentType}}</h6>
+        <p>Current price: {{stockInfo.currentPrice}} {{stockInfo.currency}}</p>
+    </section>
     <ejs-stockchart id='stockChartDefault' [chartArea]='chartArea' [primaryXAxis]='primaryXAxis' style="display:block;"
-    [primaryYAxis]='primaryYAxis' [title]='stockInfo.symbol' [crosshair]='crosshair'
+    [primaryYAxis]='primaryYAxis' [crosshair]='crosshair'
     (tooltipRender)='tooltipRender($event)' [tooltip]='tooltip' (load)='load($event)'>
     <e-stockchart-series-collection>
         <e-stockchart-series [dataSource]='dataSource' type='Candle' xName='x' yName='high' high='high' low='low'>
