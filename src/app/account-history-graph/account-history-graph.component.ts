@@ -1,17 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { AccountHistory } from '../Account-History';
 import { AccountHistoryService } from 'src/services/account-history.service';
-import {
-  ApexAxisChartSeries,
-  ApexChart,
-  ApexTitleSubtitle,
-  ApexDataLabels,
-  ApexFill,
-  ApexMarkers,
-  ApexYAxis,
-  ApexXAxis,
-  ApexTooltip
-} from "ng-apexcharts";
+import { Chart } from '@syncfusion/ej2-charts';
 
 @Component({
   selector: 'app-account-history-graph',
@@ -47,73 +37,6 @@ export class AccountHistoryGraphComponent implements OnInit, OnChanges {
           this.reportAccountHistoryList = data;
         }
       } )
-  }
-
-  // just trying it out
-  public series: ApexAxisChartSeries = [
-    {
-      name: "XYZ MOTORS",
-      data: this.reportAccountHistoryList.map(a=>a.date.getTime()/1000)
-    }
-  ];
-  public chart: ApexChart = {
-    type: "area",
-    stacked: false,
-    height: 350,
-    zoom: {
-      type: "x",
-      enabled: true,
-      autoScaleYaxis: true
-    },
-    toolbar: {
-      autoSelected: "zoom"
-    }
-  };
-  public dataLabels: ApexDataLabels = {
-    enabled: false
-  };
-  public markers: ApexMarkers = {
-    size: 0
-  };
-  public title: ApexTitleSubtitle = {
-    text: "Stock Price Movement",
-    align: "left"
-  };
-  public fill: ApexFill = {
-    type: "gradient",
-    gradient: {
-      shadeIntensity: 1,
-      inverseColors: false,
-      opacityFrom: 0.5,
-      opacityTo: 0,
-      stops: [0, 90, 100]
-    }
-  };
-  public yaxis: ApexYAxis = {
-    labels: {
-      formatter: function(val) {
-        return (val / 1000000).toFixed(0);
-      }
-    },
-    title: {
-      text: "Price"
-    }
-  };
-  public xaxis: ApexXAxis = {
-    type: "datetime"
-  };
-  public tooltip: ApexTooltip = {
-    shared: false,
-    y: {
-      formatter: function(val) {
-        return (val / 1000000).toFixed(0);
-      }
-    }
-  };
-
-  public initChartData(): void {
-    let ts2 = 1484418600000;
-    this.getAccountHistoryById();
   }
 }
 
