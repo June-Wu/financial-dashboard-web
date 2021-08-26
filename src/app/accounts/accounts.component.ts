@@ -12,11 +12,12 @@ export class AccountsComponent implements OnInit {
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
+    this.getAccountsByUser();
   }
 
   //Parameters
   getAccountByIdParams = {accountId: 0}
-  getAccountsByUserParams = {userId: 0}
+  getAccountsByUserParams = {userId: 1001}
   
   //Reported from service
   reportAccount: Account = {
@@ -37,7 +38,8 @@ export class AccountsComponent implements OnInit {
       } )
   }
 
-  getAccountById(): void{
+  getAccountById(accId: number): void{
+    this.getAccountByIdParams = {accountId: accId};
     this.accountService.getById(this.getAccountByIdParams)
       .subscribe( (data: Account | undefined)=>{
         if (data !== undefined) {

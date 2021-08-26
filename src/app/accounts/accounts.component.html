@@ -13,5 +13,46 @@
     <p>{{reportAccountList.length !== 0 ? reportAccountList : "Enter valid User ID"}}</p>
   </div>
 </div> -->
-<h1>Accounts</h1>
-<app-account-history-graph [accountId]="reportAccount.accountId"></app-account-history-graph>
+<div class="container">
+  <h1 class="page-title">Accounts</h1>
+  <div class="row" id="accounts-overview">
+    <div class="col-sm-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row" id="account-history-graph">
+            <div class="col-sm-5">
+              <h4 class="card-title mb-0">Net Worth</h4>
+            </div>
+            <div class="col-sm-7 d-none d-md-block">
+              <div data-toggle="buttons" class="btn-group btn-group-toggle float-right mr-3">
+                <label btnradio="Day" id="option1" class="btn btn-outline-secondary ng-untouched ng-pristine ng-valid" role="radio" aria-checked="false" tabindex="0">Day</label>
+                <label btnradio="Month" id="option2" class="btn btn-outline-secondary ng-untouched ng-pristine ng-valid active" role="radio" aria-checked="true" tabindex="0">Month</label>
+                <label btnradio="Year" id="option3" class="btn btn-outline-secondary ng-untouched ng-pristine ng-valid" role="radio" aria-checked="false" tabindex="0">Year</label>
+              </div>
+            </div>
+            <app-account-history-graph [accountId]="reportAccount.accountId"></app-account-history-graph>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div *ngFor="let account of reportAccountList" class="col-sm"> 
+        <div class="card text-white bg-info">
+          <div class="card-body">
+            <div class="text-value" id="account-value">{{account.value}}</div>
+            <div id="account-name">{{account.name}}</div>
+            <button type="button" class="btn btn-block btn-outline-dark text-white" (click)='getAccountById(account.accountId)'>Show Details</button>
+          </div>
+        </div>
+      </div> 
+    </div>
+  </div>
+  
+  <div class="row" *ngIf="reportAccount.accountId">
+      <div>
+        {{reportAccount.accountId ? reportAccount.accountId : "nothing"}}
+      </div>
+  </div>
+  
+</div>
+

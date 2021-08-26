@@ -19,6 +19,8 @@ import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { InsightsComponent } from './insights/insights.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     AccountHistoryGraphComponent,
     BankingComponent,
     InvestmentsComponent,
+    InsightsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -44,7 +47,8 @@ import { NgApexchartsModule } from 'ng-apexcharts';
     TreeViewAllModule,
     ListViewAllModule,
     HttpClientModule,
-    NgApexchartsModule
+    NgApexchartsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
