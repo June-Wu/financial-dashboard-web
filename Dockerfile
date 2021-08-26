@@ -7,4 +7,5 @@ FROM nginx:alpine
 RUN chmod g+rwx /var/cache/nginx /var/run /var/log/nginx
 USER <user>[:<group>]
 COPY --from=buildstep /app/dist/financial-dashboard-web /usr/share/nginx/html
+
 EXPOSE 8081
