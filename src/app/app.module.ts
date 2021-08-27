@@ -5,7 +5,7 @@ import { MenuAllModule, SidebarModule, TreeViewAllModule } from '@syncfusion/ej2
 import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
-import { ChartAllModule, RangeNavigatorAllModule, StockChartAllModule, ChartAnnotationService } from '@syncfusion/ej2-angular-charts';
+import { ChartAllModule, ChartModule, RangeNavigatorAllModule, StockChartAllModule, ChartAnnotationService, DateTimeService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService } from '@syncfusion/ej2-angular-charts';
 import { DialogModule } from '@syncfusion/ej2-angular-popups';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -20,6 +20,9 @@ import { AccountsComponent } from './accounts/accounts.component';
 import { AccountHistoryComponent } from './account-history/account-history.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
+import { InsightsComponent } from './insights/insights.component';
+import { NetWorthGraphComponent } from './net-worth-graph/net-worth-graph.component';
+
 
 
 @NgModule({
@@ -31,7 +34,9 @@ import { InvestmentsComponent } from './investments/investments.component';
     AccountsComponent,
     AccountHistoryComponent,
     BankingComponent,
-    InvestmentsComponent
+    InvestmentsComponent,
+    InsightsComponent,
+    NetWorthGraphComponent
   ],
   imports: [
     AppRoutingModule,
@@ -49,9 +54,10 @@ import { InvestmentsComponent } from './investments/investments.component';
     ChartAllModule,
     RangeNavigatorAllModule,
     StockChartAllModule,
-    DialogModule
+    DialogModule,
+    ChartModule
   ],
-  providers: [],
+  providers: [DateTimeService, LineSeriesService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
