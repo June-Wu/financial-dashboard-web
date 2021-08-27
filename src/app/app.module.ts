@@ -22,6 +22,7 @@ import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
 import { InsightsComponent } from './insights/insights.component';
 import { NetWorthGraphComponent } from './net-worth-graph/net-worth-graph.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 
 
@@ -36,7 +37,8 @@ import { NetWorthGraphComponent } from './net-worth-graph/net-worth-graph.compon
     BankingComponent,
     InvestmentsComponent,
     InsightsComponent,
-    NetWorthGraphComponent
+    NetWorthGraphComponent,
+    AccountDetailsComponent
   ],
   imports: [
     AppRoutingModule,
