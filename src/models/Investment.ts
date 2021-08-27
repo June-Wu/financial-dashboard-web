@@ -1,6 +1,6 @@
 export interface Investment {
     accountId: number;
-    symbol: String;
+    symbol: string;
     position: number;
     averagePrice: number;
 }
