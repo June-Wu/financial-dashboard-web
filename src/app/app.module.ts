@@ -6,6 +6,8 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
 import { ChartAllModule, RangeNavigatorAllModule, StockChartAllModule, ChartAnnotationService } from '@syncfusion/ej2-angular-charts';
+import { ChartModule } from '@syncfusion/ej2-angular-charts';
+import { DateTimeService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService} from '@syncfusion/ej2-angular-charts';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -16,10 +18,11 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { OverviewComponent } from './overview/overview.component';
 import { MarketComponent } from './market/market.component';
 import { AccountsComponent } from './accounts/accounts.component';
-import { AccountHistoryComponent } from './account-history/account-history.component';
+import { AccountHistoryGraphComponent } from './account-history-graph/account-history-graph.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
-
+import { InsightsComponent } from './insights/insights.component';
+import { NetWorthGraphComponent } from './net-worth-graph/net-worth-graph.component';
 
 @NgModule({
   declarations: [
@@ -28,9 +31,11 @@ import { InvestmentsComponent } from './investments/investments.component';
     OverviewComponent,
     MarketComponent,
     AccountsComponent,
-    AccountHistoryComponent,
+    AccountHistoryGraphComponent,
     BankingComponent,
-    InvestmentsComponent
+    InvestmentsComponent,
+    InsightsComponent,
+    NetWorthGraphComponent
   ],
   imports: [
     AppRoutingModule,
@@ -47,9 +52,10 @@ import { InvestmentsComponent } from './investments/investments.component';
     ListViewAllModule,
     ChartAllModule,
     RangeNavigatorAllModule,
-    StockChartAllModule
+    StockChartAllModule,
+    ChartModule
   ],
-  providers: [],
+  providers: [DateTimeService, LineSeriesService, DateTimeCategoryService, LegendService, TooltipService, DataLabelService, LineSeriesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

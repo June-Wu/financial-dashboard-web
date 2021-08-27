@@ -31,6 +31,7 @@
     "@syncfusion/ej2-angular-navigations": "^19.2.56",
     "apexcharts": "^3.28.1",
     "bootstrap": "^4.6.0",
+    "jquery": "^3.6.0",
     "ng-apexcharts": "^1.5.12",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
