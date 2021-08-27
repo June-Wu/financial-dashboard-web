@@ -26,16 +26,36 @@ export class AppComponent {
           iconCss: 'icon-eye icon',
       },{
           text: 'Accounts',
-          iconCss: 'icon-user icon'
+          iconCss: 'icon-user icon',
+          items: [
+              { text: 'Banking' },
+              { text: 'Investment' },
+              { text: 'History' }
+          ]
     },{
       text: 'Markets',
       iconCss: 'icon-globe icon',
+      items: [
+          { text: 'Explore' },
+          { text: 'Watchlists' },
+          { text: 'Crypto' },
+          { text: 'News' }
+      ]
     },{
       text: 'Notifications',
       iconCss: 'icon-bell-alt icon',
+      items: [
+          { text: 'Inbox' },
+          { text: 'Alerts' },
+      ]
   },{
           text: 'Settings',
           iconCss: 'icon-cog icon',
+          items: [
+              { text: 'Privacy' },
+              { text: 'Permissions' },
+              { text: 'Configuration' }
+          ]
       }
   ];
    public AccountMenuItem: MenuItemModel[] = [
