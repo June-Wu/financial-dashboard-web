@@ -14,12 +14,13 @@ import { FinancialService } from 'src/services/financial.service';
     encapsulation: ViewEncapsulation.None
 })
 export class MarketComponent implements OnInit {
-    @ViewChild('ejDialog', { static: true }) ejOrderDialog!: DialogComponent;
-    @ViewChild('ejDialog', {static: true}) ejDialogResult!: DialogComponent;
+    @ViewChild('ejOrderDialog', { static: true }) ejOrderDialog!: DialogComponent;
+    @ViewChild('ejResultDialog', {static: true}) ejResultDialog!: DialogComponent;
     @ViewChild('container', { read: ElementRef, static: true }) container!: ElementRef;
     buySellHeader: string = '';
     targetElement!: HTMLElement;
-    placeOrderParamObj = { aid: 12345, action: 'buy', symbol: '', quantity: 100, price: 0};
+    placeOrderParamObj = { aid: 12345, action: 'buy', symbol: '', quantity: 100, price: 0 };
+    accountIdString = '12345';
     accountInvestments:Investment[] = [];
     userInvestmentAccounts: InvestmentAccount[] = [];
     updatedInvestmentAccount: InvestmentAccount = new InvestmentAccount;
@@ -85,9 +86,6 @@ export class MarketComponent implements OnInit {
         this.fincialService.getUserInvestmentAccounts().subscribe((response: any) => {
             console.log(response);
             for (var i = 0; i < response.length; i++) {
-                if (response[i].accountType != "Investment") {
-                    continue;
-                }
                 var option = document.createElement('option');
                 option.textContent = `${response[i]['accountId']} - ${response[i]['accountName']}`;
                 option.value = option.textContent;
@@ -97,17 +95,63 @@ export class MarketComponent implements OnInit {
     }
 
     placeStockOrder() {
-        this.fincialService.sendOrderRequest(this.placeOrderParamObj)?.subscribe((response: any) => {
-            console.log(this.placeOrderParamObj);
-            if (response.error != null) {
-                this.orderResponseContent = response.error.toString();
-            } else {
-                this.orderResponseContent = response.toString();
-            }
-            console.log("placed stock order");
-            this.ejOrderDialog.hide();
-            this.ejDialogResult.show();
-        })
+        this.placeOrderParamObj.aid = parseInt(this.accountIdString);
+        this.fincialService.geAccountInvestments(this.placeOrderParamObj).subscribe((investments: any) => {
+            this.fincialService.getUserInvestmentAccounts().subscribe((investmentAccounts: any) => {
+                console.log('place stock order');
+                console.log(investments);
+                console.log(investmentAccounts);
+                console.log(this.placeOrderParamObj);
+                var existingInvestment = null;
+                var investmentAccount: any = null;
+                var tradeValue = this.placeOrderParamObj.quantity * this.placeOrderParamObj.price;
+                for (var i = 0; i < investments.length; i++) {
+                    var investment = investments[i];
+                    if (investment.symbol == this.placeOrderParamObj.symbol) {
+                        existingInvestment = investment;
+                        break;
+                    }
+                }
+                for (var i = 0; i < investmentAccounts.length; i++) {
+                    var account = investmentAccounts[i];
+                    if (account.accountId == this.placeOrderParamObj.aid) {
+                        investmentAccount = account;
+                    }
+                }
+                if (this.placeOrderParamObj.action == 'sell') {
+                    // need enough shares to sell
+                    if (existingInvestment==null || existingInvestment.position < this.placeOrderParamObj.quantity) {
+                        this.setResponseDialog(`Short selling not approved. Open positions: ${existingInvestment == null? 0 : existingInvestment.position} Sell quantity: ${this.placeOrderParamObj.quantity}`);
+                        return;
+                    }
+                    investmentAccount.cash += tradeValue;
+                    this.placeOrderParamObj.quantity = existingInvestment.quantity - this.placeOrderParamObj.quantity;
+                }
+                else {
+                    // need enough money to buy
+                    if (investmentAccount.cash < tradeValue) {
+                        this.setResponseDialog(`Insufficient funds. Account balance: ${investmentAccount.cash}  Required cash: ${tradeValue}`);
+                        return;
+                    }
+                    if (existingInvestment != null) {
+                        this.placeOrderParamObj.price = (existingInvestment.position * existingInvestment.averagePrice + tradeValue) / (existingInvestment.position + this.placeOrderParamObj.quantity);
+                        this.placeOrderParamObj.quantity += existingInvestment.position;
+                    }
+                    investmentAccount.cash -= tradeValue;
+                }
+                this.fincialService.postAccountInvestment(this.placeOrderParamObj).subscribe((postResponse: any) => {
+                    this.fincialService.postInvestmentAccount(investmentAccount).subscribe((postResponse: any) => {
+                        this.setResponseDialog(`Order filled! Open shares: ${this.placeOrderParamObj.quantity} Account balance: ${investmentAccount.cash}`);
+                    });
+                });
+            });
+        });
+    }
+
+    setResponseDialog(orderResponseContent:any) {
+        this.orderResponseContent = JSON.stringify(orderResponseContent);
+        this.ejOrderDialog.hide();
+        this.ejResultDialog.show();
     }
 
     searchStock() {

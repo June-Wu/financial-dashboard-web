@@ -12,7 +12,7 @@
         <button class="e-control e-btn" style="float: right;" id="targetButton"
             (click)="openOrderDialog($event)">Buy/Sell</button>
         <div #container class='root-container'></div>
-        <ejs-dialog id='modal' isModal=true #ejDialog [header]='buySellHeader' [target]='targetElement'
+        <ejs-dialog id='modal' isModal=true #ejOrderDialog [header]='buySellHeader' [target]='targetElement'
             [visible]='false' width=500px [showCloseIcon]='true'>
             <form>
                 <table>
@@ -25,7 +25,7 @@
                     </tr>
                     <tr>
                         <td>Account</td>
-                        <td><select id='investment-account-dropdown' name='account'></select></td>
+                        <td><select id='investment-account-dropdown' name='account' [(ngModel)]='accountIdString'></select></td>
                     </tr>
                     <tr>
                         <td>Quantity</td>
@@ -36,7 +36,7 @@
             <button type="submit" (click)='placeStockOrder()'>Place Order</button>
         </ejs-dialog>
 
-        <ejs-dialog id='modal' isModal=true #ejDialog [header]='buySellHeader' [target]='targetElement'
+        <ejs-dialog id='modal' isModal=true #ejResultDialog [header]='buySellHeader' [target]='targetElement'
             [visible]='false' width=500px [showCloseIcon]='true' [content]='orderResponseContent'></ejs-dialog>
 
         <p>Current price: {{stockInfo.currentPrice}} {{stockInfo.currency}}</p>
