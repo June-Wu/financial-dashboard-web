@@ -16,35 +16,26 @@
 <div class="container" >
   <h6 class="page-title">Accounts Overview</h6>
   <div class="row" id="accounts-overview">
-    <div class="col-sm-9">
-      <div class="card">
-        <div class="card-body">
-          <div class="row" id="net-worth-history-graph">
-            <p class="card-title mb-0">Net Worth</p>
-            <app-net-worth-graph [userId] = "reportAccount.userId"></app-net-worth-graph>
-          </div>
+      <div class="row">
+
+        <div class="col">
+          <p id="account-type-header">Investment Accounts</p>
+          <div *ngFor="let account of investmentAccounts"> 
+            <div class="list-group" id="account-buttons">
+              <app-account-details [account]="account"></app-account-details>
+            </div>
+          </div> 
         </div>
-      </div>
-    </div>
-    <div class="col-sm-3">
-      <div class="row">
-        <p id="account-type-header">Investment Accounts</p>
-        <div *ngFor="let account of investmentAccounts"> 
-          <div class="list-group" id="account-buttons">
-            <app-account-details [account]="account"></app-account-details>
+
+        <div class="col">
+          <p id="account-type-header">Banking Accounts</p>
+          <div *ngFor="let account of bankingAccounts" > 
+            <div class="list-group" id="account-buttons">
+              <app-account-details [account]="account"></app-account-details>
+            </div>
           </div>
         </div> 
       </div>
-      <div class="row">
-        <p id="account-type-header">Banking Accounts</p>
-        <div *ngFor="let account of bankingAccounts" > 
-          <div class="list-group" id="account-buttons">
-            <app-account-details [account]="account"></app-account-details>
-          </div>
-        </div> 
-      </div>
-      
-    </div>
   </div>
   <div class="row">
     <app-insights></app-insights>
