@@ -9,17 +9,18 @@ import { FinancialService } from 'src/services/financial.service';
 export class UserProfileComponent implements OnInit {
 
   paramObj = {category:'movies'}
-  reportData = { id: 0, title: 'no-name', director: 'anon' }
+  userDataObj = { id: 0, title: 'no-name', director: 'anon' }
   
   constructor(private financialService: FinancialService) { }
 
   ngOnInit(): void {
+    this.makeServiceCall();
   }
 
   makeServiceCall(){
-    this.financialService.getApiData(this.paramObj)
+    this.financialService.getUserInfo()
       .subscribe( (data:any)=>{
-        this.reportData = data
+        this.userDataObj = data
       } )
   }
 

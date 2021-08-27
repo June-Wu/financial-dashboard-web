@@ -6,9 +6,40 @@ import { HttpClient } from '@angular/common/http'
 })
 export class FinancialService {
   constructor(private http: HttpClient) { }
-  
-  // we need a method of this service - in this case we call an API end-point
-  getApiData(params={category:''}){ // all httpClient services are OBSERVABLES
-    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/${params.category}`)
+  uid: number = 1001;
+
+  getUserInfo() {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/users/${this.uid}`);
   }
+
+  // getUserAccounts() {
+  //   return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/users/${this.uid}`);
+  // }
+
+  getUserInvestmentAccounts() {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/investmentAccount/users/${this.uid}`);
+  }
+
+  geAccountInvestments(params = { aid: 12345 }) {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/${params.aid}`);
+  }
+
+  postAccountInvestment(params = { aid: 12345, action: 'buy', symbol: '', quantity: 100, price: 0 }) {
+    return this.http.post(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments`,
+    { accountId: params.aid, symbol: params.symbol, position: params.quantity, averagePrice: params.price });
+  }
+
+  postInvestmentAccount(params:any) {
+    return this.http.post(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/investmentAccount`,
+      {
+        userId: params.userId,
+        accountId: params.accountId,
+        accountName: params.accountName,
+        accountType: params.accounType,
+        value: params.value,
+        investmentType: params.investmentType,
+        cash: params.cash
+      });
+  }
+
 }
