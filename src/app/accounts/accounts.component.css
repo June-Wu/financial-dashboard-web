@@ -19,33 +19,30 @@
 }
 
 #account-value {
-    padding-top: 15px;
+    padding-top: 5%;
 }
 
 #accounts-overview {
     padding: 2%;
 }
 
-.card {
-    margin: auto;
-    margin-bottom: 5px;
-    height: max-content;
+#account-buttons {
+    margin-right: 3%;
+    padding-right: 0%;
 }
 
-#account-cards {
-    padding-top: 20px;
+.list-group-item {
+    max-width: 100%;
+    padding-right: 0%;
+}
+
+#account-type-header {
+    margin-top: 2%;
+    margin-bottom: 0px;
 }
 
 .page-title {
     font-size: xx-large;
     margin-left: 2%;
     margin-top: auto;
-}
-
-#account-history-graph {
-    align-items: flex-start;
-}
-
-.card-title {
-    font-size: large;
 }

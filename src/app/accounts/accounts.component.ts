@@ -27,7 +27,12 @@ export class AccountsComponent implements OnInit {
     accountType: "",
     value: 0
   }
-  reportAccountList: Account[] = []
+  reportAccountList: Account[] = [];
+
+  // for grouping
+  investmentAccounts: Account[] = [];
+
+  bankingAccounts: Account[] = [];
 
   getAccountsByUser(): void{
     this.accountService.getByUser(this.getAccountsByUserParams)
@@ -35,7 +40,16 @@ export class AccountsComponent implements OnInit {
         if (data.length !== 0) {
           this.reportAccountList = data;
         }
-      } )
+      } );
+
+      // for grouping
+    for (let i = 0; i < this.reportAccountList.length; i++) {
+      if (this.reportAccountList[i].accountType === "Investment") {
+          this.investmentAccounts.push(this.reportAccountList[i]);
+      } else {
+        this.bankingAccounts.push(this.reportAccountList[i]);
+      }
+    }
   }
 
   getAccountById(accId: number): void{
