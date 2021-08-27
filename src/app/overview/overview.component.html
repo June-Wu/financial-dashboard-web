@@ -11,13 +11,24 @@
         <div class="col card text-white bg-success">
             <div class="card-header">Your Top Gainers</div>
             <div class="card-body">
-                <ul class="list-group list-group-flush">
-                    <li *ngFor="let inv of reportTopGainers" class="list-group-item">{{inv.investment.symbol}} : {{inv.change}}</li>
+                <ul class="list-group list-group-flush" >
+                    <li *ngFor="let inv of reportTopGainers" class="list-group-item" id="gainers"
+                    style="background-color: #5cb85c;">
+                    {{inv.symbol}} : {{inv.regularMaketChange}}%
+                    </li>
                 </ul>
             </div>
         </div>
         <div class="col card text-white bg-danger">
-            Top Losers
+            <div class="card-header">Your Top Losers</div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush" >
+                    <li *ngFor="let inv of reportTopLosers" class="list-group-item" id="losers"
+                    style="background-color: #d9534f;">
+                    {{inv.symbol}} : {{inv.regularMaketChange}}%
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
   </div>

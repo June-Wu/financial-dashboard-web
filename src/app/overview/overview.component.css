@@ -1,0 +1,7 @@
+.list-group-item #gainers {
+    background-color: #5cb85c;
+}
+
+.list-group-item #losers {
+    background-color: #d9534f;
+}

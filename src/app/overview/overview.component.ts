@@ -43,27 +43,36 @@ export class OverviewComponent implements OnInit {
       )
     }
     let gains:any[] = [];
+    // for (let i = 0; i < invsList.length; i++) {
+    //   this.yahooService.getSummary({symbol: invsList[i].symbol}).subscribe(
+    //     (response: any) => {
+    //       if (response.price.regularMarketChange !== null) {
+    //         let temp = {
+    //           investment: invsList[i],
+    //           change: response.price.regularMarketChange.fmt
+    //         }
+    //         gains.push(temp);
+    //       }
+    //     }
+    //   )
+    //}
     for (let i = 0; i < invsList.length; i++) {
-      this.yahooService.getSummary({symbol: invsList[i].symbol}).subscribe(
-        (response: any) => {
-          if (response.price.regularMarketChange !== null) {
-            let temp = {
-              investment: invsList[i],
-              change: response.price.regularMarketChange.fmt
+      this.yahooService.getChange({symbol: invsList[i].symbol}).subscribe(
+           (response: any) => {
+            if (response !== undefined) {
+              gains.push(response);
             }
-            gains.push(temp);
-          }
-        }
-      )
-    }
+            
+    });
+
     gains.sort(function(a,b) {
-      if (a.change > b.change) return 1;
-      if (a.change < b.change) return -1;
+      if (a.regularMaketChange > b.regularMaketChange) return 1;
+      if (a.regularMaketChange < b.regularMaketChange) return -1;
       return 0;
     });
-    this.reportTopGainers = gains.slice(0,5);
-    this.reportTopLosers = gains.slice(gains.length - 5, gains.length);
+    this.reportTopLosers = gains.slice(0,5);
+    this.reportTopGainers = gains.slice(gains.length - 5, gains.length);
     console.log(gains)
   }
 
-}
+}}
