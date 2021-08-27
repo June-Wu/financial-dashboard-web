@@ -21,7 +21,10 @@ export class AppComponent {
   constructor(private _router: Router) {
   }
   public menuItems: MenuItemModel[] = [
-    {
+      {
+          text: 'Overview',
+          iconCss: 'icon-eye icon',
+      },{
           text: 'Accounts',
           iconCss: 'icon-user icon',
           items: [
@@ -68,7 +71,9 @@ export class AppComponent {
 
   menuItemClick(arg: any) {
     console.log(arg.item);
-   if (arg.item.text == "Accounts") {
+    if (arg.item.text == "Overview") {
+      this._router.navigate(['/overview']);
+    } else if (arg.item.text == "Accounts") {
       this._router.navigate(['/accounts']);
     } else if (arg.item.text == "Markets") {
       this._router.navigate(['/markets']);

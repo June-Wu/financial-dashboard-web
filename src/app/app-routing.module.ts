@@ -12,7 +12,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'markets',
+    redirectTo: 'overview',
     pathMatch: 'full'
   }, {
     path: 'overview',
