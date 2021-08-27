@@ -5,6 +5,7 @@ import { StockInfo, ChartDataPoint } from 'src/models/yahoo-stocks';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { EmitType } from '@syncfusion/ej2-base';
 import { Investment, InvestmentAccount } from 'src/models/financial-info';
+import { FinancialService } from 'src/services/financial.service';
 
 @Component({
     selector: 'app-market',
@@ -13,46 +14,30 @@ import { Investment, InvestmentAccount } from 'src/models/financial-info';
     encapsulation: ViewEncapsulation.None
 })
 export class MarketComponent implements OnInit {
-    @ViewChild('ejDialog', {static: true}) ejDialog!: DialogComponent;
+    @ViewChild('ejDialog', { static: true }) ejOrderDialog!: DialogComponent;
+    @ViewChild('ejDialog', {static: true}) ejDialogResult!: DialogComponent;
     @ViewChild('container', { read: ElementRef, static: true }) container!: ElementRef;
     buySellHeader: string = '';
     targetElement!: HTMLElement;
-    orderParamObj = { symbol: '', quantity: 100 };
+    placeOrderParamObj = { aid: 12345, action: 'buy', symbol: '', quantity: 100, price: 0};
     accountInvestments:Investment[] = [];
-    userInvestmentAccounts:InvestmentAccount[] = [];
+    userInvestmentAccounts: InvestmentAccount[] = [];
+    updatedInvestmentAccount: InvestmentAccount = new InvestmentAccount;
+    orderResponseContent: string = '';
 
     dataSource: ChartDataPoint[] = [];
     stockInfo: StockInfo = new StockInfo;
-    apiResponse: string = '';
+    stockChartResponse: string = '';
     stockSymbolInput = `Price: ${this.stockInfo.currentPrice} ${this.stockInfo.currency}`;
-    searchStockParamObj = { symbol: 'spy' };
+    getStockParamObj = { symbol: 'spy' };
 
     initializeBuySellTarget: EmitType<object> = () => {
         this.targetElement = this.container.nativeElement.parentElement;
     }
 
     public hideDialog: EmitType<object> = () => {
-        this.ejDialog.hide();
+        this.ejOrderDialog.hide();
     }
-
-    buttons: Object = [
-        {
-            'click': this.hideDialog.bind(this),
-            // Accessing button component properties by buttonModel property
-            buttonModel: {
-                content: 'Cancel',
-            }
-        },
-        {
-            'click': this.hideDialog.bind(this),
-            buttonModel: {
-                content: 'Place Order',
-                // Enables the primary button
-                isPrimary: true
-
-            }
-        }
-    ];
 
     tooltip: object = { enable: true };
     chartArea: Object = {
@@ -75,13 +60,8 @@ export class MarketComponent implements OnInit {
         enable: true
     };
 
-    openDialog(arg: any) {
-        this.ejDialog.show();
-    }
-
-    setInvestmentAccountDropdown() {
-        var select = document.getElementById("investment-account-dropdown");
-
+    openOrderDialog(arg: any) {
+        this.ejOrderDialog.show();
     }
 
     tooltipRender(args: ITooltipRenderEventArgs): void {
@@ -98,16 +78,46 @@ export class MarketComponent implements OnInit {
         args.stockChart.theme = <ChartTheme>(selectedTheme.charAt(0).toUpperCase() + selectedTheme.slice(1)).replace(/-dark/i, "Dark");
     };
 
-    constructor(private yfService: YahoofinanceService) { }
+    constructor(private yfService: YahoofinanceService, private fincialService: FinancialService) { }
+
+    setInvestmentAccountDropdown() {
+        var select = document.getElementById("investment-account-dropdown");
+        this.fincialService.getUserInvestmentAccounts().subscribe((response: any) => {
+            console.log(response);
+            for (var i = 0; i < response.length; i++) {
+                if (response[i].accountType != "Investment") {
+                    continue;
+                }
+                var option = document.createElement('option');
+                option.textContent = `${response[i]['accountId']} - ${response[i]['accountName']}`;
+                option.value = option.textContent;
+                document.getElementById('investment-account-dropdown')?.appendChild(option);
+            }
+        })
+    }
+
+    placeStockOrder() {
+        this.fincialService.sendOrderRequest(this.placeOrderParamObj)?.subscribe((response: any) => {
+            console.log(this.placeOrderParamObj);
+            if (response.error != null) {
+                this.orderResponseContent = response.error.toString();
+            } else {
+                this.orderResponseContent = response.toString();
+            }
+            console.log("placed stock order");
+            this.ejOrderDialog.hide();
+            this.ejDialogResult.show();
+        })
+    }
 
     searchStock() {
-        this.yfService.getStockChart(this.searchStockParamObj).subscribe((response: any) => {
+        this.yfService.getStockChart(this.getStockParamObj).subscribe((response: any) => {
             if (response.chart.result == null) {
-                this.apiResponse = response.chart.error.description;
+                this.stockChartResponse = response.chart.error.description;
                 return;
             }
             var result = response.chart.result[0];
-            this.apiResponse = '';
+            this.stockChartResponse = '';
             this.dataSource = [];
 
             for (var i = 0; i < result.timestamp.length; i++) {
@@ -129,7 +139,8 @@ export class MarketComponent implements OnInit {
             this.stockInfo.previousClose = result.meta.chartPreviousClose;
 
             this.buySellHeader = `${this.stockInfo.symbol} - ${this.stockInfo.currentPrice} ${this.stockInfo.currency}`;
-            this.orderParamObj.symbol = this.stockInfo.symbol;
+            this.placeOrderParamObj.symbol = this.stockInfo.symbol;
+            this.placeOrderParamObj.price = this.stockInfo.currentPrice;
         })
     }
 
@@ -139,13 +150,6 @@ export class MarketComponent implements OnInit {
     }
 
     ngAfterViewInit(): void {
-        this.ejDialog.hide();
-        document.onclick = (args: any) : void => {
-            console.log(args);
-            if (args.target.tagName === 'BODY') {
-                  this.ejDialog.hide();
-              }
-          }
       }
   
 

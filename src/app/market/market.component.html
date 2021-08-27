@@ -1,36 +1,44 @@
 <section>
     <form>
-        <input placeholder='Stock Symbol' required [(ngModel)]='searchStockParamObj.symbol' name='symbol'>
+        <input placeholder='Stock Symbol' required [(ngModel)]='getStockParamObj.symbol' name='symbol'>
         <button (click)='searchStock()'>Search</button>
     </form>
-    <p style="color: red;">{{apiResponse}}</p>
+    <p style="color: red;">{{stockChartResponse}}</p>
 </section>
 
 <section>
     <section>
         <h6>{{stockInfo.symbol}} - {{stockInfo.instrumentType}}</h6>
         <button class="e-control e-btn" style="float: right;" id="targetButton"
-            (click)="openDialog($event)">Buy/Sell</button>
+            (click)="openOrderDialog($event)">Buy/Sell</button>
         <div #container class='root-container'></div>
         <ejs-dialog id='modal' isModal=true #ejDialog [header]='buySellHeader' [target]='targetElement'
-            [buttons]='buttons' [visible]='false' width=500px [showCloseIcon]='true'>
+            [visible]='false' width=500px [showCloseIcon]='true'>
             <form>
                 <table>
                     <tr>
-                        <td>Buy</td>
-                        <td>Sell</td>
+                        <td>Action</td>
+                        <td><input type="radio" name='action' value='buy' [(ngModel)]='placeOrderParamObj.action'> Buy
+                            <input type="radio" name='action' value='sell' [(ngModel)]='placeOrderParamObj.action'> Sell
+
+                        </td>
                     </tr>
                     <tr>
                         <td>Account</td>
-                        <td><select id='investment-account-dropdown'></select></td>
+                        <td><select id='investment-account-dropdown' name='account'></select></td>
                     </tr>
                     <tr>
                         <td>Quantity</td>
-                        <td><input type="number" [(ngModel)]='orderParamObj.quantity' name='quantity'></td>
+                        <td><input type="number" [(ngModel)]='placeOrderParamObj.quantity' name='quantity'></td>
                     </tr>
                 </table>
             </form>
+            <button type="submit" (click)='placeStockOrder()'>Place Order</button>
         </ejs-dialog>
+
+        <ejs-dialog id='modal' isModal=true #ejDialog [header]='buySellHeader' [target]='targetElement'
+            [visible]='false' width=500px [showCloseIcon]='true' [content]='orderResponseContent'></ejs-dialog>
+
         <p>Current price: {{stockInfo.currentPrice}} {{stockInfo.currency}}</p>
     </section>
     <section>
