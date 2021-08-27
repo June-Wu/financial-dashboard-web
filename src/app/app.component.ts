@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, Inject, ViewChild } from '@angular/core';
 import { SidebarComponent } from '@syncfusion/ej2-angular-navigations';
 import { MenuItemModel } from '@syncfusion/ej2-navigations';
 import { Router } from '@angular/router';
@@ -6,18 +6,18 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
   title = 'financial-dashboard-web';
 
-  @ViewChild('sidebarInstance')
-  public sidebarInstance!: SidebarComponent;
+  @ViewChild('sidebarMenuInstance')
+  public sidebarMenuInstance!: SidebarComponent;
   public width: string = '220px';
   public mediaQuery: string = ('(min-width: 600px)');
   public target: string = '.main-content';
   public dockSize: string = '50px';
+   public enableDock: boolean = true;
   constructor(private _router: Router) {
   }
   public menuItems: MenuItemModel[] = [
@@ -50,7 +50,7 @@ export class AppComponent {
       ]
   },{
           text: 'Settings',
-          iconCss: 'icon-cog icon',
+          iconCss: 'icon-bookmark icon',
           items: [
               { text: 'Privacy' },
               { text: 'Permissions' },
@@ -80,9 +80,9 @@ export class AppComponent {
     } else if (arg.item.text == "Investment") {
       this._router.navigate(['/investment']);
     } else if (arg.item.text == "History") {
-      this._router.navigate(['/account-history']);
+      this._router.navigate(['/history']);
     } else if (arg.item.text == "Markets") {
-      this._router.navigate(['/markets']);
+      this._router.navigate(['/market']);
     }
   }
 
@@ -93,8 +93,14 @@ export class AppComponent {
     }
   }
 
+  // // open new tab
+  // newTabClick(): void {
+  //     let URL = location.href.replace(location.search,'');
+  //     document.getElementById('newTab').setAttribute('href', URL.split('#')[0] + 'sidebar/sidebar-menu');
+  // }
+
   openSidebarClick() {
-      this.sidebarInstance.toggle();
+    console.log("Here1");
+      this.sidebarMenuInstance.toggle();
   }
-  
 }
