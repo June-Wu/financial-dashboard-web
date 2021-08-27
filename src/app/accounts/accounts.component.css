@@ -20,6 +20,7 @@
 
 #account-value {
     padding-top: 5%;
+    font-size: x-large;
 }
 
 #accounts-overview {
@@ -38,7 +39,7 @@
 
 #account-type-header {
     margin-top: 2%;
-    margin-bottom: 0px;
+    margin-bottom: 3px;
 }
 
 .page-title {
