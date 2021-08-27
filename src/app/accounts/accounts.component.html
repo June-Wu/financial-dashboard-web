@@ -1,1 +1,60 @@
-<p>accounts works!</p>
+<!-- <div class="card" style="width: 18rem;">-->
+<!--temp, just for displaying that sevice works-->
+<!--
+  <div class="card-body">
+    <input type='text' [(ngModel)]='getAccountByIdParams.accountId' name='id' /> {{getAccountByIdParams.accountId}}
+    <a href="#" class="btn btn-primary" (click)='getAccountById()'>Get By Account ID</a>
+    <p>{{reportAccount.accountId ? reportAccount.accountId : "Enter valid AccountID"}}</p>
+  </div>
+
+  <div class="card-body">
+    <input type='text' [(ngModel)]='getAccountsByUserParams.userId' name='id' /> {{getAccountsByUserParams.userId}}
+    <a href="#" class="btn btn-primary" (click)='getAccountsByUser()'>Get By User ID</a>
+    <p>{{reportAccountList.length !== 0 ? reportAccountList : "Enter valid User ID"}}</p>
+  </div>
+</div> -->
+<div class="container">
+  <h1 class="page-title">Accounts Overview</h1>
+  <div class="row" id="accounts-overview">
+    <div class="col-sm-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row" id="net-worth-history-graph">
+            <h4 class="card-title mb-0">Net Worth</h4>
+            <app-net-worth-graph [userId] = "reportAccount.userId"></app-net-worth-graph>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <div class="row">
+        <h4 id="account-type-header">Investment Accounts</h4>
+        <div *ngFor="let account of investmentAccounts"> 
+          <div class="list-group" id="account-buttons">
+            <button type="button" class="list-group-item list-group-item-action">
+              <p id="account-name">{{account.name}}</p>
+              <p id="account-value">{{account.value.toFixed(2)}}</p>
+            </button>
+          </div>
+        </div> 
+      </div>
+      <div class="row">
+        <h4 id="account-type-header">Banking Accounts</h4>
+        <div *ngFor="let account of bankingAccounts" > 
+          <div class="list-group" id="account-buttons">
+            <button type="button" class="list-group-item list-group-item-action">
+              <p id="account-name">{{account.name}}</p>
+              <p id="account-value">{{account.value.toFixed(2)}}</p>
+            </button>
+          </div>
+        </div> 
+      </div>
+      
+    </div>
+  </div>
+  <div class="row">
+    <app-insights></app-insights>
+  </div>  
+  
+</div>
+
