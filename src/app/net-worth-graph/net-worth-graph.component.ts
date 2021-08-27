@@ -35,7 +35,7 @@ export class NetWorthGraphComponent implements OnInit {
     this.chartData = this.reportNetWorth.sort((a, b) => a.date.valueOf() - b.date.valueOf());
     this.primaryXAxis = {
       valueType: 'DateTimeCategory',
-      labelFormat: 'MM/yy',
+      labelFormat: 'dd/MM/yy',
       majorTickLines: { color: 'transparent', width: 0 },
     };
     this.primaryYAxis = {
