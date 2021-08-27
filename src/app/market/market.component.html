@@ -9,23 +9,39 @@
 <section>
     <section>
         <h6>{{stockInfo.symbol}} - {{stockInfo.instrumentType}}</h6>
-        <button class="e-control e-btn" style="float: right;" id="targetButton" (click)="openDialog($event)">Buy/Sell</button>
+        <button class="e-control e-btn" style="float: right;" id="targetButton"
+            (click)="openDialog($event)">Buy/Sell</button>
         <div #container class='root-container'></div>
-        <ejs-dialog id='modal' #ejDialog [header]='buySellHeader' [target]='targetElement' [buttons]='buttons' width=500px showCloseIcon=true visible=false> 
+        <ejs-dialog id='modal' isModal=true #ejDialog [header]='buySellHeader' [target]='targetElement'
+            [buttons]='buttons' [visible]='false' width=500px [showCloseIcon]='true'>
             <form>
-                <p>Quantity</p><input type="number" [(ngModel)]='orderParamObj.quantity' name='quantity'>
+                <table>
+                    <tr>
+                        <td>Buy</td>
+                        <td>Sell</td>
+                    </tr>
+                    <tr>
+                        <td>Account</td>
+                        <td><select id='investment-account-dropdown'></select></td>
+                    </tr>
+                    <tr>
+                        <td>Quantity</td>
+                        <td><input type="number" [(ngModel)]='orderParamObj.quantity' name='quantity'></td>
+                    </tr>
+                </table>
             </form>
         </ejs-dialog>
         <p>Current price: {{stockInfo.currentPrice}} {{stockInfo.currency}}</p>
     </section>
     <section>
-        <ejs-stockchart id='stockChartDefault' [chartArea]='chartArea' [primaryXAxis]='primaryXAxis' style="display:block;"
-        [primaryYAxis]='primaryYAxis' [crosshair]='crosshair'
-        (tooltipRender)='tooltipRender($event)' [tooltip]='tooltip' (load)='load($event)'>
-        <e-stockchart-series-collection>
-            <e-stockchart-series [dataSource]='dataSource' type='Candle' xName='x' yName='high' high='high' low='low'>
-            </e-stockchart-series>
-        </e-stockchart-series-collection>
+        <ejs-stockchart id='stockChartDefault' [chartArea]='chartArea' [primaryXAxis]='primaryXAxis'
+            style="display:block;" [primaryYAxis]='primaryYAxis' [crosshair]='crosshair'
+            (tooltipRender)='tooltipRender($event)' [tooltip]='tooltip' (load)='load($event)'>
+            <e-stockchart-series-collection>
+                <e-stockchart-series [dataSource]='dataSource' type='Candle' xName='x' yName='high' high='high'
+                    low='low'>
+                </e-stockchart-series>
+            </e-stockchart-series-collection>
         </ejs-stockchart>
     </section>
 </section>

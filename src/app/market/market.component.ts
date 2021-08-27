@@ -4,6 +4,7 @@ import { YahoofinanceService } from 'src/services/yahoofinance.service';
 import { StockInfo, ChartDataPoint } from 'src/models/yahoo-stocks';
 import { DialogComponent } from '@syncfusion/ej2-angular-popups';
 import { EmitType } from '@syncfusion/ej2-base';
+import { Investment, InvestmentAccount } from 'src/models/financial-info';
 
 @Component({
     selector: 'app-market',
@@ -17,6 +18,8 @@ export class MarketComponent implements OnInit {
     buySellHeader: string = '';
     targetElement!: HTMLElement;
     orderParamObj = { symbol: '', quantity: 100 };
+    accountInvestments:Investment[] = [];
+    userInvestmentAccounts:InvestmentAccount[] = [];
 
     dataSource: ChartDataPoint[] = [];
     stockInfo: StockInfo = new StockInfo;
@@ -76,6 +79,11 @@ export class MarketComponent implements OnInit {
         this.ejDialog.show();
     }
 
+    setInvestmentAccountDropdown() {
+        var select = document.getElementById("investment-account-dropdown");
+
+    }
+
     tooltipRender(args: ITooltipRenderEventArgs): void {
         if (args.text.split('<br/>')[4]) {
             let target: number = parseInt(args.text.split('<br/>')[4].split('<b>')[1].split('</b>')[0], 10);
@@ -127,11 +135,14 @@ export class MarketComponent implements OnInit {
 
     ngOnInit(): void {
         this.searchStock();
+        this.setInvestmentAccountDropdown();
     }
 
     ngAfterViewInit(): void {
+        this.ejDialog.hide();
         document.onclick = (args: any) : void => {
-              if(args.target.tagName === 'BODY') {
+            console.log(args);
+            if (args.target.tagName === 'BODY') {
                   this.ejDialog.hide();
               }
           }
