@@ -100,46 +100,6 @@ export const ACCOUNTHISTORY: AccountHistory[] = [
         accountId: 12345,
         date: new Date('2021-07-28'),
         value: 80609.86
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-27'),
-        value: 80773.33
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-26'),
-        value: 81569.66
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-23'),
-        value: 80644.29
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-22'),
-        value: 79925.0
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-21'),
-        value: 80322.03
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-20'),
-        value: 80518.25
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-19'),
-        value: 78620.1
-    },
-    {
-        accountId: 12345,
-        date: new Date('2021-07-16'),
-        value: 78974.98
     }
     
 ];
