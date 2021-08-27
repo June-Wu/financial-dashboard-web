@@ -3,7 +3,6 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Account } from 'src/models/Account';
 import { Investment } from 'src/models/Investment';
 import { FinancialService } from 'src/services/financial.service';
-import { InvestmentsService } from 'src/services/investments.service';
 
 @Component({
   selector: 'app-account-details',
@@ -14,28 +13,28 @@ import { InvestmentsService } from 'src/services/investments.service';
 export class AccountDetailsComponent implements OnInit {
 
   @Input() 
-  account: Account =  {accountId: 12345,
+  account: Account =  {accountId: 0,
                         userId: 1001,
                         name: "",
                         accountType: "Investment",
                         value: 0
                       };
 
-  constructor(private modalService: NgbModal, private investmentsService: InvestmentsService, private financialService: FinancialService) { }
+  constructor(private modalService: NgbModal,  private financialService: FinancialService) { }
 
   ngOnInit(): void {
-    if (this.account.accountType == "Investment") {
-      this.getInvestmentsByAccountId();
-    }
-
   }
 
   openLg(content: any) {
+    if (this.account.accountType == "Investment") {
+      this.getInvestmentsByIdParams.aid = this.account.accountId;
+      this.getInvestmentsByAccountId();
+    }
     this.modalService.open(content, { size: 'lg' });
   }
 
   //Parameters
-  getInvestmentsByIdParams = {aid: this.account.accountId}
+  getInvestmentsByIdParams = {aid: 0}
 
   reportInvestmentsList:Investment[] = [];
 
@@ -43,6 +42,7 @@ export class AccountDetailsComponent implements OnInit {
     this.financialService.geAccountInvestments(this.getInvestmentsByIdParams)
     .subscribe((data:any) => {
       this.reportInvestmentsList = data;
+      console.log(this.reportInvestmentsList)
     });
   }
 }
