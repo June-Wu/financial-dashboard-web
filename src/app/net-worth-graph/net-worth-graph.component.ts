@@ -32,7 +32,7 @@ export class NetWorthGraphComponent implements OnInit {
     this.tooltip = {
       enable: true
     }
-    this.chartData = this.reportNetWorth;
+    this.chartData = this.reportNetWorth.sort((a, b) => a.date.valueOf() - b.date.valueOf());
     this.primaryXAxis = {
       valueType: 'DateTimeCategory',
       labelFormat: 'y-MM-dd',
