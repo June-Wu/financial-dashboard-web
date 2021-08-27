@@ -6,6 +6,7 @@ import { DropDownListModule } from '@syncfusion/ej2-angular-dropdowns';
 import { ButtonModule, RadioButtonModule } from '@syncfusion/ej2-angular-buttons';
 import { ListViewAllModule } from '@syncfusion/ej2-angular-lists';
 import { ChartAllModule, RangeNavigatorAllModule, StockChartAllModule, ChartAnnotationService } from '@syncfusion/ej2-angular-charts';
+import { DialogModule } from '@syncfusion/ej2-angular-popups';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -47,7 +48,8 @@ import { InvestmentsComponent } from './investments/investments.component';
     ListViewAllModule,
     ChartAllModule,
     RangeNavigatorAllModule,
-    StockChartAllModule
+    StockChartAllModule,
+    DialogModule
   ],
   providers: [],
   bootstrap: [AppComponent]
