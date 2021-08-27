@@ -29,6 +29,7 @@ export class FinancialService {
   }
 
   geAccountInvestments(params = { aid: 12345 }) {
+    console.log(params)
     return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/${params.aid}`);
   }
 
