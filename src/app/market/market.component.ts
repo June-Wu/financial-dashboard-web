@@ -98,6 +98,7 @@ export class MarketComponent implements OnInit {
         this.placeOrderParamObj.aid = parseInt(this.accountIdString);
         this.fincialService.geAccountInvestments(this.placeOrderParamObj).subscribe((investments: any) => {
             this.fincialService.getUserInvestmentAccounts().subscribe((investmentAccounts: any) => {
+                var orderParams = JSON.parse(JSON.stringify(this.placeOrderParamObj));
                 console.log('place stock order');
                 console.log(investments);
                 console.log(investmentAccounts);
@@ -125,7 +126,7 @@ export class MarketComponent implements OnInit {
                         return;
                     }
                     investmentAccount.cash += tradeValue;
-                    this.placeOrderParamObj.quantity = existingInvestment.quantity - this.placeOrderParamObj.quantity;
+                    orderParams.quantity = existingInvestment.position - this.placeOrderParamObj.quantity;
                 }
                 else {
                     // need enough money to buy
@@ -134,14 +135,14 @@ export class MarketComponent implements OnInit {
                         return;
                     }
                     if (existingInvestment != null) {
-                        this.placeOrderParamObj.price = (existingInvestment.position * existingInvestment.averagePrice + tradeValue) / (existingInvestment.position + this.placeOrderParamObj.quantity);
-                        this.placeOrderParamObj.quantity += existingInvestment.position;
+                        orderParams.price = (existingInvestment.position * existingInvestment.averagePrice + tradeValue) / (existingInvestment.position + this.placeOrderParamObj.quantity);
+                        orderParams.quantity += existingInvestment.position;
                     }
                     investmentAccount.cash -= tradeValue;
                 }
-                this.fincialService.postAccountInvestment(this.placeOrderParamObj).subscribe((postResponse: any) => {
+                this.fincialService.postAccountInvestment(orderParams).subscribe((postResponse: any) => {
                     this.fincialService.postInvestmentAccount(investmentAccount).subscribe((postResponse: any) => {
-                        this.setResponseDialog(`Order filled! Current Position: ${this.placeOrderParamObj.quantity==NaN? 0 : this.placeOrderParamObj.quantity} Account balance: ${investmentAccount.cash}`);
+                        this.setResponseDialog(`Order filled! Open shares: ${orderParams.quantity} Account balance: ${investmentAccount.cash}`);
                     });
                 });
             });
