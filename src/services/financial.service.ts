@@ -33,6 +33,10 @@ export class FinancialService {
   }
 
   postAccountInvestment(params = { aid: 12345, action: 'buy', symbol: '', quantity: 100, price: 0 }) {
+    
+    if (params.quantity = 0) {
+      return this.http.delete(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/instrument/${params.symbol}`);
+    }
     return this.http.post(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments`,
     { accountId: params.aid, symbol: params.symbol, position: params.quantity, averagePrice: params.price });
   }

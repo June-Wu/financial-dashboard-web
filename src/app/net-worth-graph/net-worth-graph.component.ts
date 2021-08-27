@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AccountHistoryService } from 'src/services/account-history.service';
 import { NetWorth } from 'src/models/Net-Worth';
+import { FinancialService } from 'src/services/financial.service';
 
 @Component({
   selector: 'app-net-worth-graph',
@@ -9,7 +10,7 @@ import { NetWorth } from 'src/models/Net-Worth';
 })
 export class NetWorthGraphComponent implements OnInit {
 
-  constructor(private accountHistoryService: AccountHistoryService) {}
+  constructor(private accountHistoryService: AccountHistoryService, private financialService: FinancialService) {}
 
   @Input() userId = 1001;
 

@@ -141,7 +141,7 @@ export class MarketComponent implements OnInit {
                 }
                 this.fincialService.postAccountInvestment(this.placeOrderParamObj).subscribe((postResponse: any) => {
                     this.fincialService.postInvestmentAccount(investmentAccount).subscribe((postResponse: any) => {
-                        this.setResponseDialog(`Order filled! Open shares: ${this.placeOrderParamObj.quantity} Account balance: ${investmentAccount.cash}`);
+                        this.setResponseDialog(`Order filled! Current Position: ${this.placeOrderParamObj.quantity} Account balance: ${investmentAccount.cash}`);
                     });
                 });
             });
