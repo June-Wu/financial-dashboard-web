@@ -12,12 +12,20 @@ export class FinancialService {
     return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/users/${this.uid}`);
   }
 
-  // getUserAccounts() {
-  //   return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/users/${this.uid}`);
-  // }
+  getUserAccounts() {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/accounts/uid/${this.uid}`);
+  }
+
+  getUserAccountByAid(params = { aid: 12345 }) {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/accounts/aid/${params.aid}`);
+  }
 
   getUserInvestmentAccounts() {
     return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/investmentAccount/users/${this.uid}`);
+  }
+
+  getInvestmentAccountByAid(params = { aid: 12345 }) {
+    return this.http.get(`http://financialdashboard-financialdashboard.namdevops27.conygre.com/investments/investmentAccount/${params.aid}`);
   }
 
   geAccountInvestments(params = { aid: 12345 }) {

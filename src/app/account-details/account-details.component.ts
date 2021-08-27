@@ -2,6 +2,7 @@ import { Component, OnInit, ViewEncapsulation, Input  } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Account } from 'src/models/Account';
 import { Investment } from 'src/models/Investment';
+import { FinancialService } from 'src/services/financial.service';
 import { InvestmentsService } from 'src/services/investments.service';
 
 @Component({
@@ -20,10 +21,13 @@ export class AccountDetailsComponent implements OnInit {
                         value: 0
                       };
 
-  constructor(private modalService: NgbModal, private investmentsService: InvestmentsService) { }
+  constructor(private modalService: NgbModal, private investmentsService: InvestmentsService, private financialService: FinancialService) { }
 
   ngOnInit(): void {
-    this.getInvestmentsByAccountId();
+    if (this.account.accountType == "Investment") {
+      this.getInvestmentsByAccountId();
+    }
+
   }
 
   openLg(content: any) {
@@ -31,14 +35,13 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   //Parameters
-  getInvestmentsByIdParams = {accountId: this.account.accountId}
+  getInvestmentsByIdParams = {aid: this.account.accountId}
 
   reportInvestmentsList:Investment[] = [];
 
   getInvestmentsByAccountId():void {
-    this.investmentsService.getInvestmentsByAccountId(this.getInvestmentsByIdParams)
-    .subscribe((data) => {
-      console.log(data);
+    this.financialService.geAccountInvestments(this.getInvestmentsByIdParams)
+    .subscribe((data:any) => {
       this.reportInvestmentsList = data;
     });
   }

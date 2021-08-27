@@ -21,10 +21,7 @@ export class AppComponent {
   constructor(private _router: Router) {
   }
   public menuItems: MenuItemModel[] = [
-      {
-          text: 'Overview',
-          iconCss: 'icon-eye icon',
-      },{
+    {
           text: 'Accounts',
           iconCss: 'icon-user icon',
           items: [
@@ -71,16 +68,8 @@ export class AppComponent {
 
   menuItemClick(arg: any) {
     console.log(arg.item);
-    if (arg.item.text == "Overview") {
-      this._router.navigate(['/overview']);
-    } else if (arg.item.text == "Accounts") {
+   if (arg.item.text == "Accounts") {
       this._router.navigate(['/accounts']);
-    } else if (arg.item.text == "Banking") {
-      this._router.navigate(['/banking']);
-    } else if (arg.item.text == "Investment") {
-      this._router.navigate(['/investment']);
-    } else if (arg.item.text == "History") {
-      this._router.navigate(['/account-history']);
     } else if (arg.item.text == "Markets") {
       this._router.navigate(['/markets']);
     }

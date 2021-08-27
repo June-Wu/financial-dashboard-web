@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AccountService } from 'src/services/account.service';
 import { Account } from 'src/models/Account'
+import { FinancialService } from 'src/services/financial.service';
 
 @Component({
   selector: 'app-accounts',
@@ -9,16 +10,16 @@ import { Account } from 'src/models/Account'
 })
 export class AccountsComponent implements OnInit {
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService, private financialService: FinancialService) { }
 
   ngOnInit(): void {
     this.getAccountsByUser();
   }
 
   //Parameters
-  getAccountByIdParams = {accountId: 0}
-  getAccountsByUserParams = {userId: 1001}
-  
+  getAccountByIdParams = { aid: 12345 }
+  getAccountsByUserParams = { uid: 1001 }
+
   //Reported from service
   reportAccount: Account = {
     accountId: 0,
@@ -34,32 +35,30 @@ export class AccountsComponent implements OnInit {
 
   bankingAccounts: Account[] = [];
 
-  getAccountsByUser(): void{
-    this.accountService.getByUser(this.getAccountsByUserParams)
-      .subscribe( (data: Account[])=>{
-        if (data.length !== 0) {
-          this.reportAccountList = data;
+  getAccountsByUser(): void {
+    this.financialService.getUserAccounts()
+      .subscribe((response: any) => {
+        this.reportAccountList = response.length > 0 ? response : this.reportAccountList;
+        // for grouping
+        for (let i = 0; i < this.reportAccountList.length; i++) {
+          if (this.reportAccountList[i].accountType === "Investment") {
+            this.investmentAccounts.push(this.reportAccountList[i]);
+          } else {
+            this.bankingAccounts.push(this.reportAccountList[i]);
+          }
         }
-      } );
-
-      // for grouping
-    for (let i = 0; i < this.reportAccountList.length; i++) {
-      if (this.reportAccountList[i].accountType === "Investment") {
-          this.investmentAccounts.push(this.reportAccountList[i]);
-      } else {
-        this.bankingAccounts.push(this.reportAccountList[i]);
-      }
-    }
+      });
   }
 
-  getAccountById(accId: number): void{
-    this.getAccountByIdParams = {accountId: accId};
-    this.accountService.getById(this.getAccountByIdParams)
-      .subscribe( (data: Account | undefined)=>{
+  getAccountById(accId: number): void {
+    this.getAccountByIdParams = { aid: accId };
+    this.financialService.getUserAccountByAid(this.getAccountByIdParams)
+      .subscribe((data: any) => {
         if (data !== undefined) {
           this.reportAccount = data;
+          console.log(this.reportAccount);
         }
-      } )
+      });
   }
 
 
