@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AccountHistoryGraphComponent } from './account-history-graph/account-history-graph.component';
+import { AccountHistoryComponent } from './account-history/account-history.component';
 import { AccountsComponent } from './accounts/accounts.component';
 import { BankingComponent } from './banking/banking.component';
 import { InvestmentsComponent } from './investments/investments.component';
@@ -34,7 +34,7 @@ const routes: Routes = [
     component: InvestmentsComponent
   }, {
     path: 'account-history',
-    component: AccountHistoryGraphComponent
+    component: AccountHistoryComponent
   }, 
 ];
 

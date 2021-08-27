@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { NetWorthGraphComponent } from './net-worth-graph.component';
+import { AccountHistoryComponent } from './account-history.component';
 
-describe('NetWorthGraphComponent', () => {
-  let component: NetWorthGraphComponent;
-  let fixture: ComponentFixture<NetWorthGraphComponent>;
+describe('AccountHistoryComponent', () => {
+  let component: AccountHistoryComponent;
+  let fixture: ComponentFixture<AccountHistoryComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ NetWorthGraphComponent ]
+      declarations: [ AccountHistoryComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(NetWorthGraphComponent);
+    fixture = TestBed.createComponent(AccountHistoryComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
